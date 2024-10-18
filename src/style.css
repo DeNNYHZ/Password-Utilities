@@ -1,33 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --primary-color: #4caf50;
-    --secondary-color: #2196f3;
-    --background-color: #f0f2f5;
-    --text-color: #333;
-    --input-bg: #fff;
-    --border-radius: 8px;
+    --primary-color: #6366f1;
+    --primary-hover: #4f46e5;
+    --secondary-color: #f59e0b;
+    --secondary-hover: #d97706;
+    --background-color: #f3f4f6;
+    --card-background: #ffffff;
+    --text-color: #1f2937;
+    --border-color: #e5e7eb;
+    --success-color: #10b981;
+    --danger-color: #ef4444;
+    --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
+    font-family: 'Poppins', sans-serif;
     background-color: var(--background-color);
     color: var(--text-color);
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
+    line-height: 1.6;
+    padding: 20px;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
 }
 
 .container {
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
 }
 
 h1 {
@@ -35,83 +42,361 @@ h1 {
     color: var(--primary-color);
     margin-bottom: 1.5rem;
     font-weight: 700;
+    font-size: 2.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.password-actions, .password-list {
+.card {
+    background-color: var(--card-background);
+    border-radius: 12px;
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.password-display {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.password-display input {
+    flex-grow: 1;
+    margin-right: 0.5rem;
+    font-size: 1.1rem;
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+}
+
+.password-display input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.password-options {
+    margin-bottom: 1.5rem;
+}
+
+.option {
     margin-bottom: 1rem;
 }
 
-input[type="text"], input[type="password"] {
-    padding: 0.75rem 1rem;
-    background-color: var(--input-bg);
-    border: 1px solid #ddd;
-    border-radius: var(--border-radius);
-    color: var(--text-color);
-    font-size: 1rem;
+.option label {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.range-container {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.range-container input[type="range"] {
+    flex-grow: 1;
+    margin-right: 1rem;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: #d7dcdf;
+    outline: none;
+}
+
+.range-container input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.range-container input[type="range"]::-webkit-slider-thumb:hover {
+    background: var(--primary-hover);
+}
+
+.range-container span {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+input[type="checkbox"] {
+    margin-right: 0.75rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+input[type="checkbox"]:checked::before {
+    content: '\2713';
+    display: block;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    line-height: 18px;
 }
 
 button {
-    background-color: var(--primary-color);
-    color: #fff;
-    text-transform: uppercase;
-    padding: 0.75rem 1rem;
-    border: none;
-    border-radius: var(--border-radius);
     cursor: pointer;
-    font-weight: 700;
-    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 
-button:hover {
-    background-color: #45a049;
+.primary-button {
+    background-color: var(--primary-color);
+    color: white;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.primary-button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
 }
 
 .secondary-button {
     background-color: var(--secondary-color);
-    margin-top: 1rem;
+    color: white;
+    width: 100%;
+    margin-bottom: 0.75rem;
 }
 
 .secondary-button:hover {
-    background-color: #1e88e5;
+    background-color: var(--secondary-hover);
+    transform: translateY(-2px);
 }
 
-#passwordList {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-#passwordList li {
+.icon-button {
+    background-color: transparent;
+    padding: 0.5rem;
+    border-radius: 50%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #ddd;
+    justify-content: center;
+    transition: background-color 0.3s ease;
 }
 
-#passwordList li:last-child {
+.icon-button:hover {
+    background-color: var(--border-color);
+}
+
+.icon-button svg {
+    width: 24px;
+    height: 24px;
+    color: var(--primary-color);
+}
+
+.password-list {
+    margin-bottom: 1.5rem;
+}
+
+.password-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s ease;
+    gap: 0.5rem;
+}
+
+.password-item:last-child {
     border-bottom: none;
 }
 
-#passwordList li button {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.8rem;
+.password-item:hover {
+    background-color: #f9fafb;
 }
 
-.show-password, .edit-password, .delete-password {
-    background-color: #f0f0f0;
+.password-item input[type="password"] {
+    font-size: 1rem;
+    padding: 0.5rem 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+    background-color: var(--card-background);
     color: var(--text-color);
-    border: 1px solid #ddd;
+    width: 100%;
+    max-width: 250px;
 }
 
-.show-password:hover, .edit-password:hover, .delete-password:hover {
-    background-color: #e0e0e0;
+.password-item input[type="password"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
 }
 
-.stored-password {
-    flex-grow: 1;
-    margin: 0 0.5rem;
+.password-item button {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+    border-radius: 4px;
 }
+
+.show-password {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.show-password:hover {
+    background-color: var(--secondary-hover);
+}
+
+.edit-password {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.edit-password:hover {
+    background-color: var(--primary-hover);
+}
+
+.delete-password {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.delete-password:hover {
+    background-color: #dc2626;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .password-item {
+        flex-wrap: wrap;
+    }
+
+    .password-item input[type="password"] {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+
+    .password-item button {
+        margin: 0.25rem;
+    }
+}
+
+
+.password-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.password-actions input[type="text"],
+.password-actions input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+}
+
+.password-actions input[type="text"]:focus,
+.password-actions input[type="password"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.password-list {
+    margin-bottom: 1.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.password-item {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s ease;
+}
+
+.password-item:last-child {
+    border-bottom: none;
+}
+
+.password-item:hover {
+    background-color: #f3f4f6;;
+}
+
+.password-item span {
+    font-weight: 500;
+    color: var(--text-color);
+    font-size: 1rem;
+    margin-right: auto;
+    white-space: nowrap;
+}
+
+.password-item input[type="password"],
+.password-item input[type="text"] {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+.password-item input[type="password"]:focus,
+.password-item input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.password-item button {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.show-password {
+    min-width: 50px;
+}
+.edit-password {
+    min-width: 50px;
+}
+.delete-password {
+    min-width: 50px;
+}
+

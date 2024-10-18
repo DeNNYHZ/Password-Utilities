@@ -9,48 +9,50 @@
 <body>
 <div class="container">
     <h1>Password Generator</h1>
-    <div class="generator">
-        <div class="password">
-            <input type="text" id="passwordOutput" value="" readonly />
-            <button id="copyPassword">Copy</button>
+    <div class="card">
+        <div class="password-display">
+            <input type="text" id="passwordOutput" readonly />
+            <button id="copyPassword" class="icon-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            </button>
         </div>
-        <div class="range">
-            <input type="range" id="passwordLength" min="8" max="16" value="8" />
-            <span id="passwordLengthValue">8</span>
-        </div>
-        <div class="options">
+        <div class="password-options">
+            <div class="option">
+                <label for="passwordLength">Password Length</label>
+                <div class="range-container">
+                    <input type="range" id="passwordLength" min="8" max="16" value="8" />
+                    <span id="passwordLengthValue">8</span>
+                </div>
+            </div>
             <div class="option">
                 <label>
                     <input type="checkbox" id="lowercaseCb" checked />
-                    <span>a-z</span>
+                    <span>Lowercase (a-z)</span>
                 </label>
             </div>
             <div class="option">
                 <label>
-                    <input type="checkbox" id="uppercaseCb" />
-                    <span>A-Z</span>
+                    <input type="checkbox" id="uppercaseCb" checked />
+                    <span>Uppercase (A-Z)</span>
                 </label>
             </div>
             <div class="option">
                 <label>
-                    <input type="checkbox" id="digitsCb" />
-                    <span>0-9</span>
+                    <input type="checkbox" id="digitsCb" checked />
+                    <span>Numbers (0-9)</span>
                 </label>
             </div>
             <div class="option">
                 <label>
                     <input type="checkbox" id="specialsCb" />
-                    <span>!@$#%^</span>
+                    <span>Special Characters (!@#$%^&*)</span>
                 </label>
             </div>
         </div>
-        <button id="generatePassword" class="generate">Generate Password</button>
+        <button id="generatePassword" class="primary-button">Generate Password</button>
+        <button id="goToManager" class="secondary-button">Go to Password Manager</button>
     </div>
-    <button id="goToManager" class="secondary-button">Go to Password Manager</button>
 </div>
 <script src="src/script.js"></script>
-<script>
-    document.getElementById("generatePassword").addEventListener("click", generate);
-</script>
 </body>
 </html>

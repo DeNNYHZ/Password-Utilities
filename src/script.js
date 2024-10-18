@@ -1,59 +1,41 @@
 function generate() {
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-    if (checkboxes.length === 0) {
-        alert("Please select at least one character type.");
-        return;
-    }
-    let dictionary = "";
-    if (document.getElementById("lowercaseCb").checked) {
-        dictionary += "qwertyuiopasdfghjklzxcvbnm";
-    }
-    if (document.getElementById("uppercaseCb").checked) {
-        dictionary += "QWERTYUIOPASDFGHJKLZXCVBNM";
-    }
-    if (document.getElementById("digitsCb").checked) {
-        dictionary += "1234567890";
-    }
-    if (document.getElementById("specialsCb").checked) {
-        dictionary += "!@#$%^&*()_+-={}[];<>:";
-    }
     const length = parseInt(document.getElementById("passwordLength").value);
+    const lowercase = document.getElementById("lowercaseCb").checked;
+    const uppercase = document.getElementById("uppercaseCb").checked;
+    const digits = document.getElementById("digitsCb").checked;
+    const specials = document.getElementById("specialsCb").checked;
 
-    if (length < 1 || dictionary.length === 0) {
+    let charset = "";
+    if (lowercase) charset += "abcdefghijklmnopqrstuvwxyz";
+    if (uppercase) charset += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    if (digits) charset += "0123456789";
+    if (specials) charset += "!@#$%^&*()_+-={}[]|:;<>,.?";
+
+    if (charset.length === 0) {
+        alert("Please select at least one character type.");
         return;
     }
 
     let password = "";
     for (let i = 0; i < length; i++) {
-        const pos = Math.floor(Math.random() * dictionary.length);
-        password += dictionary[pos];
+        const randomIndex = Math.floor(Math.random() * charset.length);
+        password += charset[randomIndex];
     }
 
     document.getElementById("passwordOutput").value = password;
-    document.getElementById("passwordOutput").setAttribute("value", password);
 }
 
-document.querySelectorAll('input[type="checkbox"], #generatePassword').forEach((elem) => {
-    elem.addEventListener("click", () => {
-        if (elem.id === "generatePassword" || elem.type === "checkbox") {
-            generate();
-        }
-    });
-});
+document.getElementById("generatePassword").addEventListener("click", generate);
 
 document.getElementById("passwordLength").addEventListener("input", (e) => {
-    document.getElementById("passwordLengthValue").innerHTML = e.target.value;
-    generate();
+    document.getElementById("passwordLengthValue").textContent = e.target.value;
 });
 
 document.getElementById("copyPassword").addEventListener("click", () => {
-    const pass = document.getElementById("passwordOutput").value;
-    navigator.clipboard.writeText(pass).then(() => {
-        document.getElementById("copyPassword").innerHTML = "Copied!";
-        setTimeout(() => {
-            document.getElementById("copyPassword").innerHTML = "Copy";
-        }, 1000);
-    });
+    const passwordOutput = document.getElementById("passwordOutput");
+    passwordOutput.select();
+    document.execCommand("copy");
+    alert("Password copied to clipboard!");
 });
 
 document.getElementById("goToManager").addEventListener("click", () => {
